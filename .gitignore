@@ -1,0 +1,30 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+.venv/
+.venv312/
+venv/
+
+# Secrets
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Datasets and generated outputs
+*.xlsx
+*.csv
+*.pkl
+*.joblib
+*.png
+
+# Backup files
+app_backup_before_evaluation.py
+
+# Cache and testing
+.pytest_cache/
+.mypy_cache/
+
+!rfm_kmeans_customers.csv
