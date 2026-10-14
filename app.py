@@ -19,7 +19,7 @@ st.title("RetailPulse")
 st.subheader("AI-Powered Customer Analytics & Demand Forecasting")
 st.caption("Explore sales trends, products, customers, and order patterns.")
 
-DATA_FILE = Path(__file__).parent / "retail_cleaned.csv"
+DATA_FILE = Path(__file__).parent / "retail_cleaned.csv.gz"
 
 REQUIRED_COLUMNS = [
     "Invoice",
@@ -45,7 +45,8 @@ def load_data(file_path, modified_time):
     data = pd.read_csv(
         file_path,
         usecols=REQUIRED_COLUMNS,
-        low_memory=False
+        low_memory=False,
+        compression="gzip"
     )
 
     data["InvoiceDate"] = pd.to_datetime(
