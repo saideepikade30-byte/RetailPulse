@@ -656,11 +656,12 @@ else:
 
         with st.spinner("Training Prophet and generating forecasts..."):
             prophet_model = Prophet(
-                yearly_seasonality=use_yearly_seasonality,
-                weekly_seasonality=True,
-                daily_seasonality=False,
-                seasonality_mode="additive",
-                changepoint_prior_scale=0.05,
+               yearly_seasonality=use_yearly_seasonality,
+               weekly_seasonality=True,
+               daily_seasonality=False,
+               seasonality_mode="additive",
+               changepoint_prior_scale=0.01,
+               seasonality_prior_scale=10.0,
             )
 
             prophet_model.fit(prophet_train)
@@ -907,15 +908,15 @@ evaluation = pd.DataFrame({
     ],
     "MAE (£)": [
         10938.56,
-        8907.76
+        8841.35
     ],
     "WAPE (%)": [
         39.82,
-        32.43
+        32.18
     ],
     "MAPE (%) — Nonzero Sales Days": [
         40.80,
-        33.68
+        32.55
     ]
 })
 
@@ -926,7 +927,7 @@ st.dataframe(
 )
 
 baseline_wape = 39.82
-prophet_wape = 32.43
+prophet_wape = 32.18
 improvement = (
     (baseline_wape - prophet_wape)
     / baseline_wape

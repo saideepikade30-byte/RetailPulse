@@ -6,10 +6,10 @@ print("=" * 60)
 print("RETAILPULSE - FORECAST METHOD COMPARISON")
 print("=" * 60)
 
-file_path = Path(__file__).parent / "retail_cleaned.csv"
+file_path = Path(__file__).parent / "retail_cleaned.csv.gz"
 
 if not file_path.exists():
-    raise FileNotFoundError("retail_cleaned.csv was not found.")
+    raise FileNotFoundError("retail_cleaned.csv.gz was not found.")
 
 columns = [
     "InvoiceDate",
@@ -19,7 +19,12 @@ columns = [
     "IsCancellation",
 ]
 
-df = pd.read_csv(file_path, usecols=columns)
+df = pd.read_csv(
+    file_path,
+    usecols=columns,
+    compression="gzip",
+    low_memory=False
+)
 
 df["InvoiceDate"] = pd.to_datetime(
     df["InvoiceDate"], errors="coerce"

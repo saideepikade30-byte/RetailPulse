@@ -118,7 +118,8 @@ for number, start in enumerate(test_starts, start=1):
         weekly_seasonality=True,
         daily_seasonality=False,
         seasonality_mode="additive",
-        changepoint_prior_scale=0.05,
+        changepoint_prior_scale=0.01,
+        seasonality_prior_scale=10.0,
     )
 
     model.fit(training_df)
